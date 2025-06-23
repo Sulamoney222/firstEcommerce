@@ -24,12 +24,20 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+    <header className="bg-white shadow-stone-800 shadow-md sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-gray-800 transition-transform duration-300 hover:scale-105">
-          <Link to="/">ShopiFy</Link>
-        </div>
+        <div className="flex items-center transition-transform duration-300 hover:scale-105">
+  <Link to="/" className="flex items-center gap-2">
+    <img
+      src="https://tse2.mm.bing.net/th?id=OIP.1exgp2wM5-UKtjZfUay2OwHaEW&pid=Api&P=0&h=180"
+      alt="ShopReact Logo"
+      className="h-10 w-auto object-contain"
+    />
+    <span className="hidden sm:inline-block text-xl font-bold text-gray-800">ShopReact</span>
+  </Link>
+</div>
+
 
         {/* Desktop Search */}
         <div className="hidden md:flex flex-1 mx-4">
@@ -43,7 +51,7 @@ const Header = () => {
             />
             <button
               type="submit"
-              className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700 transition"
+              className="bg-green-600 text-white px-4 rounded-r-md hover:bg-green-700 transition"
             >
               Search
             </button>
@@ -62,7 +70,7 @@ const Header = () => {
         {/* Cart & Auth */}
         <div className="hidden md:flex items-center space-x-4">
           <Link to="/cart" className="relative hover:text-blue-600 transition">
-            <span className="material-icons text-2xl">shopping_cart</span>
+            <span className="material-icons text-2xl">Carts</span>
             {cart.totalItems > 0 && (
               <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1 animate-ping">
                 {cart.totalItems}
