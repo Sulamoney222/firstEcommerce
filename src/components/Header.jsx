@@ -14,6 +14,8 @@ const Header = () => {
     e.preventDefault();
     if (searchQuery.trim()) {
       navigate(`/?search=${encodeURIComponent(searchQuery)}`);
+      setSearchQuery('');
+      setMobileMenuOpen(false); // Optional: Close menu on mobile search
     }
   };
 
@@ -22,42 +24,47 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <header className="bg-white shadow-md sticky top-0 z-50 transition-all duration-300">
+      <div className="max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="text-2xl font-bold text-gray-800">
+        <div className="text-2xl font-bold text-gray-800 transition-transform duration-300 hover:scale-105">
           <Link to="/">ShopReact</Link>
         </div>
 
         {/* Desktop Search */}
         <div className="hidden md:flex flex-1 mx-4">
-          <form onSubmit={handleSearch} className="w-full flex">
+          <form onSubmit={handleSearch} className="w-full flex transition-all duration-300">
             <input
               type="text"
-              className="w-full border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none"
+              className="w-full border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
               placeholder="Search products..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <button type="submit" className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700 transition"
+            >
               Search
             </button>
           </form>
         </div>
 
         {/* Mobile Menu Button */}
-        <button onClick={toggleMobileMenu} className="md:hidden text-gray-700">
-          <span className="material-icons text-3xl">
-            {mobileMenuOpen ? 'close' : 'menu'}
-          </span>
+        <button
+          onClick={toggleMobileMenu}
+          className="md:hidden text-gray-700 focus:outline-none transition-transform duration-300"
+          aria-label="Toggle Menu"
+        >
+          <span className="material-icons text-3xl">{mobileMenuOpen ? 'close' : 'menu'}</span>
         </button>
 
         {/* Cart & Auth */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link to="/cart" className="relative">
+          <Link to="/cart" className="relative hover:text-blue-600 transition">
             <span className="material-icons text-2xl">shopping_cart</span>
             {cart.totalItems > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full px-1 animate-ping">
                 {cart.totalItems}
               </span>
             )}
@@ -65,52 +72,61 @@ const Header = () => {
 
           {isAuthenticated ? (
             <div className="relative group">
-              <span className="cursor-pointer">Hi, {user.name}</span>
-              <div className="absolute hidden group-hover:block bg-white border rounded shadow-md mt-2 py-2 w-32">
+              <span className="cursor-pointer text-gray-800">Hi, {user.name}</span>
+              <div className="absolute right-0 hidden group-hover:block bg-white border rounded shadow-md mt-2 py-2 w-32 transition-opacity duration-200 z-50">
                 <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
-                <button onClick={logout} className="block w-full text-left px-4 py-2 hover:bg-gray-100">Logout</button>
+                <button onClick={logout} className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+                  Logout
+                </button>
               </div>
             </div>
           ) : (
-            <Link to="/auth" className="text-blue-600 hover:underline">Login</Link>
+            <Link to="/auth" className="text-blue-600 hover:underline transition">Login</Link>
           )}
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden px-4 pb-4">
-          <form onSubmit={handleSearch} className="flex mb-4">
-            <input
-              type="text"
-              className="w-full border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none"
-              placeholder="Search products..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <button type="submit" className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700">
-              Search
-            </button>
-          </form>
+      <div
+        className={`md:hidden transition-all duration-300 px-4 pb-4 overflow-hidden ${
+          mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+        }`}
+      >
+        <form onSubmit={handleSearch} className="flex mb-4">
+          <input
+            type="text"
+            className="w-full border border-gray-300 rounded-l-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
+            placeholder="Search products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button
+            type="submit"
+            className="bg-blue-600 text-white px-4 rounded-r-md hover:bg-blue-700 transition"
+          >
+            Search
+          </button>
+        </form>
 
-          <nav className="space-y-2">
-            <Link to="/" className="block text-gray-700">Home</Link>
-            <Link to="/products" className="block text-gray-700">Shop</Link>
-            {isAuthenticated && <Link to="/orders" className="block text-gray-700">My Orders</Link>}
-            {isAuthenticated ? (
-              <>
-                <Link to="/profile" className="block text-gray-700">Profile</Link>
-                <button onClick={logout} className="block text-left text-gray-700 w-full">Logout</button>
-              </>
-            ) : (
-              <Link to="/auth" className="block text-gray-700">Login</Link>
-            )}
-            <Link to="/cart" className="block text-gray-700">
-              Cart ({cart.totalItems})
-            </Link>
-          </nav>
-        </div>
-      )}
+        <nav className="space-y-2 text-gray-700">
+          <Link to="/" className="block hover:text-blue-600 transition">Home</Link>
+          <Link to="/products" className="block hover:text-blue-600 transition">Shop</Link>
+          {isAuthenticated && (
+            <Link to="/orders" className="block hover:text-blue-600 transition">My Orders</Link>
+          )}
+          {isAuthenticated ? (
+            <>
+              <Link to="/profile" className="block hover:text-blue-600 transition">Profile</Link>
+              <button onClick={logout} className="block text-left w-full hover:text-blue-600 transition">Logout</button>
+            </>
+          ) : (
+            <Link to="/auth" className="block hover:text-blue-600 transition">Login</Link>
+          )}
+          <Link to="/cart" className="block hover:text-blue-600 transition">
+            Cart ({cart.totalItems})
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 };
