@@ -28,7 +28,7 @@ const Header = () => {
       <div className="max-w-screen-xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
         <div className="text-2xl font-bold text-gray-800 transition-transform duration-300 hover:scale-105">
-          <Link to="/">ShopReact</Link>
+          <Link to="/">ShopiFy</Link>
         </div>
 
         {/* Desktop Search */}
