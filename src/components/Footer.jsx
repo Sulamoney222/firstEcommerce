@@ -11,7 +11,7 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">About</h3>
             <p className="text-sm text-gray-400 leading-relaxed">
-              ShopReact is your go-to e-commerce store for high-quality products at unbeatable prices. 
+              ShopItems is your go-to e-commerce store for high-quality products at unbeatable prices. 
               From electronics to fashion and more, we have something for everyone!
             </p>
           </div>
@@ -39,8 +39,8 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>Email: support@shopreact.com</li>
-              <li>Phone: (123) 456-7890</li>
+              <li>Email: sulaimonnasiru06@gmail.com</li>
+              <li>Phone: +234 8028 497961</li>
             </ul>
           </div>
 
@@ -67,7 +67,7 @@ const Footer = () => {
         {/* Footer bottom */}
         <div className="border-t border-gray-700 mt-10 pt-4 text-center">
           <p className="text-sm text-gray-400">
-            &copy; {new Date().getFullYear()} ShopReact. All Rights Reserved.
+            &copy; {new Date().getFullYear()} ShopItems. All Rights Reserved.
           </p>
         </div>
       </div>

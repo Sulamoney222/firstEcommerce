@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { FiMenu, FiX } from 'react-icons/fi'; // FiMenu = ☰ , FiX = ×
+
 
 const Header = () => {
   const { cart } = useCart();
@@ -64,7 +66,7 @@ const Header = () => {
           className="md:hidden text-gray-700 focus:outline-none transition-transform duration-300"
           aria-label="Toggle Menu"
         >
-          <span className="material-icons text-3xl">{mobileMenuOpen ? 'close' : 'menu'}</span>
+          <span className="material-icons text-3xl">{mobileMenuOpen ? <FiX/> : <FiMenu/>}</span>
         </button>
 
         {/* Cart & Auth */}
