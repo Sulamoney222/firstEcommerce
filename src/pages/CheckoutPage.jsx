@@ -407,7 +407,7 @@ const CheckoutPage = () => {
                   Back
                 </button>
                 <button 
-                  className="bg-green-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition"
+                  className="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600 transition"
                   onClick={handleNextStep}
                 >
                   Continue to Review
@@ -438,7 +438,7 @@ const CheckoutPage = () => {
                     Back
                   </button>
                   <button 
-                    className="bg-green-500 text-white py-2 px-6 rounded hover:bg-blue-600 transition"
+                    className="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600 transition"
                     onClick={handlePlaceOrder}
                   >
                     Place Order
