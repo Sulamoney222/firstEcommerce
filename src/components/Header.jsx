@@ -34,7 +34,7 @@ const Header = () => {
       alt="ShopReact Logo"
       className="h-10 w-auto object-contain"
     />
-    <span className="hidden sm:inline-block text-xl font-bold text-gray-800">ShopReact</span>
+    <span className="hidden sm:inline-block text-xl font-bold text-gray-800">ShopItems</span>
   </Link>
 </div>
 
