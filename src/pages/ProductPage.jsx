@@ -95,7 +95,7 @@ const ProductPage = () => {
             <input
               type="number"
               id="quantity"
-              min="1"
+              
               max={product.stock}
               value={quantity}
               onChange={handleQuantityChange}

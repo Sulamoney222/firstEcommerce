@@ -121,12 +121,12 @@ const Header = () => {
         <nav className="space-y-2 text-gray-700">
           <Link to="/" className="block hover:text-blue-600 transition">Home</Link>
           <Link to="/products" className="block hover:text-blue-600 transition">Shop</Link>
-          {isAuthenticated && (
+          {/* {isAuthenticated && (
             <Link to="/orders" className="block hover:text-blue-600 transition">My Orders</Link>
-          )}
+          )} */}
           {isAuthenticated ? (
             <>
-              <Link to="/profile" className="block hover:text-blue-600 transition">Profile</Link>
+              {/* <Link to="/profile" className="block hover:text-blue-600 transition">Profile</Link> */}
               <button onClick={logout} className="block text-left w-full hover:text-blue-600 transition">Logout</button>
             </>
           ) : (
